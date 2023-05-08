@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Input from './Input'
 import styles from '../styles/styles.module.css';
 
@@ -6,6 +6,11 @@ import styles from '../styles/styles.module.css';
 
 
 export default function InputList() {
+  const handleChange = (e) =>{
+
+  }
+
+  
   return (
     <div className ={styles.container}>
        <div className={styles.inputitem}>
@@ -13,18 +18,32 @@ export default function InputList() {
          <Input placeholder="default"/>
        </div>
 
-       <div className={styles.inputitem}>
-        <div className=''>
+       <div className=''>
         <p style={{fontWeight: "bolder"}}>input -  error</p>
-            <Input error isFocused placeholder="error"/>
+            <Input error isFocused placeholder="error" handleChange={handleChange}/>
         </div>
+
        
-       </div>
 
        <div className={styles.inputitem}>
        <p style={{fontWeight: "bolder"}}>input -  disabled</p>
             <Input disabledInput placeholder="disabled"/>
         </div>
+
+        <div style={{display: "flex", gap: "20px"}}>
+         <div className={styles.inputitem}>
+                  <p style={{fontWeight: "bolder"}}>input -   text</p>
+                  <Input  helperText = "something interesting"  />
+                
+          </div>
+          <div className={styles.inputitem}>
+                  <p style={{fontWeight: "bolder"}}>input -  error && text</p>
+                  <Input  error helperText = "something interesting"  />
+                
+          </div>
+       
+       
+       </div>
 
         <div style={{display: "flex", gap: "20px"}}>
             <div className={styles.inputitem}>
@@ -39,11 +58,7 @@ export default function InputList() {
             </div>
         </div>
 
-           <div className={styles.inputitem}>
-                  <p style={{fontWeight: "bolder"}}>input -  disabled && text</p>
-                  <Input disabledInput text   placeholder="text"/>
-                
-             </div>
+          
 
             <div style={{display: "flex", gap: "20px"}}>
               <div className={styles.inputitem}>

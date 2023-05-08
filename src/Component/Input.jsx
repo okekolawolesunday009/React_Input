@@ -12,7 +12,7 @@
         disabledInput, 
         placeholder,
         iconPosition,
-        text, 
+        helperText = "", 
         fullwidth,
         multiline,
         className, 
@@ -23,9 +23,10 @@
         const classes = cn(
             styles.div,
             { [styles.redBorder]: error && isFocused  },
+            { [styles.redBorder]: error   },
             { [styles.blueBorder]: isFocused},
             { [styles.disabled]: disabledInput },
-            { [styles.disabledText]: disabledInput && text },
+            { [styles.disabledText]: disabledInput && helperText },
             { [styles.md]: size === "md" },
             { [styles.lg]: size === "lg" },
             { [styles.rows_4]: multiline && rows === '4' },
@@ -38,14 +39,11 @@
         const classesLabel = cn(
             styles.div,
             { [styles.labelRed]: error &&  isFocused},
+            { [styles.labelRed]: error },
             { [styles.labelBlue]: isFocused }
         );
 
 
-        const [errorMessage, setErrorMessage] = useState({
-            isValid: true,
-            message: ''
-        })
 
         const disableRef = useRef("");
 
@@ -55,32 +53,40 @@
         function defaulLoaded() {
             disableRef.current.disabled = true;
         }
+        const [errorMessage, setErrorMessage] = useState({
+            isValid: true,
+            message: ''
+        })
+          const validateInput = (value) => {
+           
+                if (value.trim() === '')
+                {
+                    setErrorMessage({
+                        isValid:true, 
+                        message: 'This field is required'
+                    });
+                }else if (value.length < 6) {
+                    setErrorMessage({
+                        isValid:false, 
+                        message: 'text must be atleast 6'
+                    });
+            
+                } else{
+                    setErrorMessage({
+                        isValid:true, 
+                        message: ''
+                    })
+            
+                }
+              
 
-
-        const validateInput = (value) => {
-            if (value.trim() === '')
-            {
-                setErrorMessage({
-                    isValid:true, 
-                    message: 'This field is required'
-                });
-            }else if (value.length < 6) {
-                setErrorMessage({
-                    isValid:false, 
-                    message: 'text must be atleast 6'
-                });
-
-            } else{
-                setErrorMessage({
-                    isValid:true, 
-                    message: ''
-                })
-
-            }
+           
         }
         const handleChange = (e) =>{
-            validateInput(e.target.value);
+          validateInput(e.target.value);
         }
+
+
 
     return (
         <div className={styles.input_box}>
@@ -104,8 +110,7 @@
                     size = {size}
                     rows= {rows}
                     multiline
-                    text
-                    
+                    helperText={helperText}                    
                     
                 />
                 
@@ -115,6 +120,9 @@
         
 
             {!errorMessage.isValid && <span style={{color: "red"}}>{errorMessage.message}</span>}
+            {helperText ? (error ? <span style={{color: "red"}}>{helperText}</span> : <span>{helperText}</span>) : null }
+
+           
         
         </div>
     )
