@@ -20,6 +20,7 @@
     padding-left: 10px; 
     padding-right: 10px;
 }
+
 .input_box{
     display: flex;
     flex-direction: column;
@@ -49,7 +50,7 @@
 }
 
 .input::placeholder{
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 500;
     line-height: 20px;
     letter-spacing: 0em;
@@ -57,14 +58,12 @@
 
 }
 
-.redBorder{
+.redBorder, .redBorder:hover, .redBorder:focus{
     border: 2px solid red;
     /* border: none; */
 }
-.redBorder:hover, .redBorder:focus{
-    border: 2px solid red;
-}
-.disabled, .disabled:hover{
+
+.disabled{
     border: none;
     cursor: not-allowed; 
     background:  #cac9c9;
@@ -89,4 +88,25 @@
 .icons{
     width: 19%;
     height: 35%;
+}
+.disabledText{
+    border: none;
+    cursor: not-allowed; 
+    background:  none;
+    border: 1px solid #828282;
+}
+.md{
+    width: 200px;
+    height: 40px
+}
+.lg{
+    width: 200px;
+    height: 56px;
+}
+.rows_4{
+    width: 200px;
+    height: 150px;
+}
+.fullwidth{
+    width: 100%
 }

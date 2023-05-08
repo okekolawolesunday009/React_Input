@@ -1,108 +1,122 @@
-import React, { useRef, useState } from 'react';
-import styles from '../styles/styles.module.css';
-import cn from "classnames";
-// import { IconAsset } from './iconAsset';
-import provider from '../assets/provider.png';
+    import React, { useRef, useState } from 'react';
+    import styles from '../styles/styles.module.css';
+    import cn from "classnames";
+    import call from '../assets/call.svg';
+    import lock from '../assets/lock.svg';
 
 
-const Input = ({
-    normal, 
-    error, 
-    disabledInput, 
-    placeholder,
-    iconPosition, 
-    className, 
-    icon }) => {
-    
-    const [isFocused, setIsFocused] = useState(false);
-   
+    const Input = ( {
+        size = "",
+        rows = "1",
+        error, 
+        disabledInput, 
+        placeholder,
+        iconPosition,
+        text, 
+        fullwidth,
+        multiline,
+        className, 
+        } ) => {
+        
+        const [isFocused, setIsFocused] = useState(false);
 
-    const classes = cn(
-        styles.div,
-        { [styles.redBorder]: error   },
-        { [styles.redBorder]: error && isFocused  },
-        { [styles.blueBorder]:isFocused && normal},
-        { [styles.disabled]: disabledInput },
-        className
-       
-      );
+        const classes = cn(
+            styles.div,
+            { [styles.redBorder]: error && isFocused  },
+            { [styles.blueBorder]: isFocused},
+            { [styles.disabled]: disabledInput },
+            { [styles.disabledText]: disabledInput && text },
+            { [styles.md]: size === "md" },
+            { [styles.lg]: size === "lg" },
+            { [styles.rows_4]: multiline && rows === '4' },
+            { [styles.fullwidth]: fullwidth },
+            // { [styles.md]: md},
+            className
+        
+        );
 
-      const classesLabel = cn(
-        styles.div,
-        { [styles.labelRed]: error &&  isFocused},
-        { [styles.labelBlue]: isFocused }
-      );
-
-
-    const [errorMessage, setErrorMessage] = useState({
-        isValid: true,
-        message: ''
-    })
-
-    const disableRef = useRef("");
-
-    const handleFocus = () => setIsFocused(true);
-    const handleBlur = () => setIsFocused(false);
-
-    function defaulLoaded() {
-        disableRef.current.disabled = true;
-      }
+        const classesLabel = cn(
+            styles.div,
+            { [styles.labelRed]: error &&  isFocused},
+            { [styles.labelBlue]: isFocused }
+        );
 
 
-    const validateInput = (value) => {
-        if (value.trim() === '')
-        {
-            setErrorMessage({
-                isValid:true, 
-                message: 'This field is required'
-            });
-        }else if (value.length < 6) {
-            setErrorMessage({
-                isValid:false, 
-                message: 'Password must be atleast 6'
-            });
+        const [errorMessage, setErrorMessage] = useState({
+            isValid: true,
+            message: ''
+        })
 
-        } else{
-            setErrorMessage({
-                isValid:true, 
-                message: ''
-            })
+        const disableRef = useRef("");
 
+        const handleFocus = () => setIsFocused(true);
+        const handleBlur = () => setIsFocused(false);
+
+        function defaulLoaded() {
+            disableRef.current.disabled = true;
         }
-    }
-    const handleChange = (e) =>{
-        validateInput(e.target.value);
-    }
 
-  return (
-    <div className={styles.input_box}>
-        <label  className={`${classesLabel}`}>label</label>
-       
-        <div className={`${classes} ${styles.wrapper}`} >
-            {iconPosition === 'start' && ( <img className={styles.icons}  src={provider}/>)}
 
-            <input
-                type="password" 
-                className={`${styles.input}`}
-                placeholder={placeholder }
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                name = "password"
-                onLoad={()=> defaulLoaded}
-                onChange={handleChange}
-                defaultValue={true}
-                disabled = {disabledInput}
-                ref={ disableRef}
-            />
+        const validateInput = (value) => {
+            if (value.trim() === '')
+            {
+                setErrorMessage({
+                    isValid:true, 
+                    message: 'This field is required'
+                });
+            }else if (value.length < 6) {
+                setErrorMessage({
+                    isValid:false, 
+                    message: 'text must be atleast 6'
+                });
+
+            } else{
+                setErrorMessage({
+                    isValid:true, 
+                    message: ''
+                })
+
+            }
+        }
+        const handleChange = (e) =>{
+            validateInput(e.target.value);
+        }
+
+    return (
+        <div className={styles.input_box}>
+            <label  className={`${classesLabel}`}>label</label>
+        
+            <div className={`${classes} ${styles.wrapper}`} >
+                {iconPosition === 'start' && (  <img className={styles.icons } alt = "password"  src={call}/>)}
             
-            {iconPosition === 'end' && (<img className={styles.icons}  src={provider}/>)}
+                <input
+                    type="text" 
+                    className={`${styles.input}`}
+                    placeholder={placeholder }
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    name = "text"
+                    onLoad={()=> defaulLoaded}
+                    onChange={handleChange}
+                    defaultValue={""}
+                    disabled = {disabledInput}
+                    ref={ disableRef}
+                    size = {size}
+                    rows= {rows}
+                    multiline
+                    text
+                    
+                    
+                />
+                
+                {iconPosition === 'end' && (<img className={styles.icons } alt = "password"  src={lock}/>)}
 
+            </div>
+        
+
+            {!errorMessage.isValid && <span style={{color: "red"}}>{errorMessage.message}</span>}
+        
         </div>
-       
-
-         {!errorMessage.isValid && <span style={{color: "red"}}>{errorMessage.message}</span>}
-      
-    </div>
-  )
-}
-export default Input
+    )
+    }
+    export default Input

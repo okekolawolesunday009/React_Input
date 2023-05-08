@@ -9,35 +9,67 @@ export default function InputList() {
   return (
     <div className ={styles.container}>
        <div className={styles.inputitem}>
-         input -  default//normal
-         <Input normal placeholder="default"/>
+       <p style={{fontWeight: "bolder"}}>input -  default</p>
+         <Input placeholder="default"/>
        </div>
 
        <div className={styles.inputitem}>
         <div className=''>
-            input -  error
-            <Input error/>
+        <p style={{fontWeight: "bolder"}}>input -  error</p>
+            <Input error isFocused placeholder="error"/>
         </div>
        
        </div>
 
        <div className={styles.inputitem}>
-            input -  disabled
+       <p style={{fontWeight: "bolder"}}>input -  disabled</p>
             <Input disabledInput placeholder="disabled"/>
         </div>
 
         <div style={{display: "flex", gap: "20px"}}>
             <div className={styles.inputitem}>
-                input -  startIcon
-                <Input normal iconPosition="start" placeholder="disabled"/>
-              
+            <p style={{fontWeight: "bolder"}}>input -  startIcon</p>
+                <Input  iconPosition="start" placeholder="placeholder"/>
+            
             </div>
             <div className={styles.inputitem}>
-                input -  endIcon
-                <Input normal iconPosition="end" placeholder="disabled"/>
+            <p style={{fontWeight: "bolder"}}>input -  endIcon</p>
+                <Input  iconPosition="end" placeholder="placeholder"/>
                 
             </div>
         </div>
+
+           <div className={styles.inputitem}>
+                  <p style={{fontWeight: "bolder"}}>input -  disabled && text</p>
+                  <Input disabledInput text   placeholder="text"/>
+                
+             </div>
+
+            <div style={{display: "flex", gap: "20px"}}>
+              <div className={styles.inputitem}>
+                    <p style={{fontWeight: "bolder"}}>input -  md</p>
+                    <Input  size = "md"  placeholder="placeholder"/>
+                    
+                </div>
+                <div className={styles.inputitem}>
+                  <p style={{fontWeight: "bolder"}}>input -  lg</p>
+                  <Input  size = "lg"  placeholder="placeholder"/>
+                
+                 </div>
+           </div>
+
+
+           <div className={styles.inputitem}>
+                  <p style={{fontWeight: "bolder"}}>input -  fullwidth</p>
+                  <Input  fullwidth  placeholder="placeholder"/>
+                
+            </div>
+            
+           <div className={styles.inputitem}>
+                  <p style={{fontWeight: "bolder"}}>input -  multiple lines</p>
+                  <Input multiline rows= "4"  placeholder="placeholder"/>
+                
+            </div>
 
         {/* <AiFillEyeInvisible/> */}
       
