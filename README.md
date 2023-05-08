@@ -12,7 +12,7 @@
       Demo
     </a>
     <span> | </span>
-    <a href="https://dev-challenges-button.netlify.app">
+    <a href="https://https://dev-input.netlify.app/">
       Solution
     </a>
     <span> | </span>
@@ -87,5 +87,5 @@ $ npm start
 ## Contact
 
 - Website [Okekolawolesunday.netlify.app](https://Okekolawolesunday.netlify.app)
-- GitHub [@okekolawolesunday009](https://https://github.com/okekolawolesunday009/React-Button)
+- GitHub [@okekolawolesunday009](https://github.com/okekolawolesunday009/React_Input)
 - Twitter [@OkekolawoleSun3](//twitter.com/OkekolawoleSun3)
