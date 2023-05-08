@@ -37,7 +37,7 @@
 
 ## Overview
 
-![screenshot](https://devchallenges-blogs.web.app/how-to-replicate-design/)
+![screenshot](https://github.com/okekolawolesunday009/React_Input/blob/main/src/assets/Dev-input.png)
 
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
